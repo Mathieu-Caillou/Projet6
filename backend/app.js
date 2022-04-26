@@ -1,6 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
+const userRoutes = require('./routes/user');
+const saucesRoutes = require("./routes/sauces");
+
 mongoose.connect('mongodb+srv://Mathieu:Martin123@cluster0.a92r9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
   { useNewUrlParser: true,
     useUnifiedTopology: true })
@@ -16,6 +19,7 @@ app.use((req, res, next) => {
     next();
   });
 
-  
+app.use("/api/auth", userRoutes);
+app.use('/api/sauces', saucesRoutes);
 
 module.exports = app;
